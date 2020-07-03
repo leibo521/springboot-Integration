@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>employee</title>
+</head>
+<body>
+<h1>这是Employee页面</h1>
+
+<!--下面是显示的信息-->
+    <table border="1">
+        <tbody>
+            <tr>
+                <th>employeeId</th>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>email</th>
+                <th>phoneNumber</th>
+                <th>jobId</th>
+                <th>salary</th>
+                <th>managerId</th>
+                <th>departmentId</th>
+                <th>empBirth</th>
+            </tr>
+            <tr>
+                <td>[[${emp.employeeId}]]</td>
+                <td>[[${emp.firstName}]]</td>
+                <td>[[${emp.lastName}]]</td>
+                <td>[[${emp.email}]]</td>
+                <td>[[${emp.phoneNumber}]]</td>
+                <td>[[${emp.jobId}]]</td>
+                <td>[[${emp.salary}]]</td>
+                <td>[[${emp.managerId}]]</td>
+                <td>[[${emp.departmentId}]]</td>
+                <td>[[${emp.empBirth}]]</td>
+
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

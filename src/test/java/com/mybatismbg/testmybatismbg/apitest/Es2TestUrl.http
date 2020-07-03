@@ -1,0 +1,65 @@
+PUT http://192.168.43.245:9200/megacorp/102
+# 用来在es2中添加文档,向http://localhost:9200/<index>/<type>/[<id>]
+# 向megacorp索引中添加一个编号为id的type类型的文档
+Content-Type: application/json
+Accept: application/json
+
+{
+  "employeeId": 102,
+  "firstName": "Lex",
+  "lastName": "De Haan",
+  "email": "LDEHAAN",
+  "phoneNumber": "515.123.4569",
+  "jobId": "AD_VP",
+  "salary": 17000.0,
+  "managerId": 100,
+  "departmentId": 90,
+  "empBirth": "1992-04-02T16:00:00.000+00:00"
+}
+###
+
+HEAD http://192.168.43.245:9200/megacorp/101
+# 用来检测指定的数据是否存在
+Accept: application/json
+###
+
+GET http://192.168.43.245:9200/megacorp/111
+# 获取指定id的数据
+Accept: application/json
+###
+
+GET http://192.168.43.245:9200/megacorp/_search?size=20
+#查找所有的员工
+Accept: application/json
+###
+
+GET http://192.168.43.245:9200/_search
+#查找出所有的文档
+Accept: application/json
+###
+
+
+GET http://192.168.43.245:9200/megacorp/_search?q=departmentId:90
+# 带查询的字符串的搜索
+Accept: application/json
+###
+
+POST http://192.168.43.245:9200/megacorp/_search
+Content-Type: application/json
+Accept: application/json
+
+{
+    "query":
+    {
+        "match_phrase":
+        {
+            "departmentId": "100"
+        }
+    }
+}
+###
+
+GET http://192.168.43.245:9200
+Accept: application/json
+###
+
