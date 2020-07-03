@@ -8,6 +8,7 @@
         <version>2.3.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.my.myintegration</groupId>
     <artifactId>integration</artifactId>
     <version>1.0-RELEASE</version>
