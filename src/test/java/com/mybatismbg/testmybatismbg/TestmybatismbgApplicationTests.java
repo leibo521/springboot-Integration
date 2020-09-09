@@ -160,7 +160,7 @@ class TestmybatismbgApplicationTests {
      */
 
     @Test
-    public void testClassLoader(){
+    public void testClassLoader() {
         // 测试类加载器
         Employees obj = new Employees();
         String str = new String("4444");
@@ -176,8 +176,8 @@ class TestmybatismbgApplicationTests {
         long MAX_MEMORY = Runtime.getRuntime().maxMemory();
         long MIN_MEMORY = Runtime.getRuntime().totalMemory();
         // 输出
-        System.out.println("虚拟机试图获取的最大内存:" + Math.round(MAX_MEMORY/1000.0/1000) + "MB");
-        System.out.println("虚拟机初始的内存大小:" + Math.round(MIN_MEMORY/1000.0/1000) + "MB");
+        System.out.println("虚拟机试图获取的最大内存:" + Math.round(MAX_MEMORY / 1000.0 / 1000) + "MB");
+        System.out.println("虚拟机初始的内存大小:" + Math.round(MIN_MEMORY / 1000.0 / 1000) + "MB");
     }
 
 

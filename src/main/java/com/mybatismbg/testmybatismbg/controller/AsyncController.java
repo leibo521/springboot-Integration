@@ -18,15 +18,14 @@ public class AsyncController {
     EmpService empService;
     @Autowired
     AsyncService asyncService;
+
     // 测试一个异步的注解
     @RequestMapping("/hello")
-    public Employees asyncHello(){
+    public Employees asyncHello() {
         log.info("将会开始执行异步的方法");
         asyncService.hello();
         return empService.getEmpById(101);
     }
-
-
 
 
 }

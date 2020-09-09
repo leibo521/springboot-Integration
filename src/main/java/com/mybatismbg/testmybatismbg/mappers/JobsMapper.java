@@ -2,7 +2,9 @@ package com.mybatismbg.testmybatismbg.mappers;
 
 import com.mybatismbg.testmybatismbg.bean.Jobs;
 import com.mybatismbg.testmybatismbg.bean.JobsExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface JobsMapper {

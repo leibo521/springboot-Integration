@@ -23,7 +23,7 @@ public class EmpServiceImpl implements EmpService {
 
     // 获取所有emp的方法
     @Override
-    public List<Employees> getAllEmp(){
+    public List<Employees> getAllEmp() {
         // ① 创建example
         EmployeesExample employeesExample = new EmployeesExample();
         // ② 设置参数(设置的是where条件后面的参数)
@@ -37,7 +37,7 @@ public class EmpServiceImpl implements EmpService {
     // 根据主键获取Emp
     @Cacheable(key = "#root.methodName + '_' + #a0")
     @Override
-    public Employees getEmpById(Integer id){
+    public Employees getEmpById(Integer id) {
         return employeesMapper.selectByPrimaryKey(id);
     }
 

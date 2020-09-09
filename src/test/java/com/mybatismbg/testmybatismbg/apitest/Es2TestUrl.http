@@ -16,32 +16,38 @@ Accept: application/json
   "departmentId": 90,
   "empBirth": "1992-04-02T16:00:00.000+00:00"
 }
+
 ###
 
 HEAD http://192.168.43.245:9200/megacorp/101
 # 用来检测指定的数据是否存在
 Accept: application/json
+
 ###
 
 GET http://192.168.43.245:9200/megacorp/111
 # 获取指定id的数据
 Accept: application/json
+
 ###
 
 GET http://192.168.43.245:9200/megacorp/_search?size=20
 #查找所有的员工
 Accept: application/json
+
 ###
 
 GET http://192.168.43.245:9200/_search
 #查找出所有的文档
 Accept: application/json
+
 ###
 
 
 GET http://192.168.43.245:9200/megacorp/_search?q=departmentId:90
 # 带查询的字符串的搜索
 Accept: application/json
+
 ###
 
 POST http://192.168.43.245:9200/megacorp/_search
@@ -57,9 +63,11 @@ Accept: application/json
         }
     }
 }
+
 ###
 
 GET http://192.168.43.245:9200
 Accept: application/json
+
 ###
 

@@ -2,7 +2,9 @@ package com.mybatismbg.testmybatismbg.mappers;
 
 import com.mybatismbg.testmybatismbg.bean.Departments;
 import com.mybatismbg.testmybatismbg.bean.DepartmentsExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface DepartmentsMapper {

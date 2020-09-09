@@ -8,6 +8,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -24,7 +25,7 @@ public class MyRealm extends AuthorizingRealm {
         // ② 使用信息获取用户的角色信息,可能需要查询数据库
         Set<String> roles = new HashSet<>();
         roles.add("user");
-        if ("admin".equals(primaryPrincipal)){
+        if ("admin".equals(primaryPrincipal)) {
             roles.add("admin");
         }
         // ③ 创建SimpleAuthorizationInfo
@@ -32,6 +33,7 @@ public class MyRealm extends AuthorizingRealm {
         return info;
     }
 
+    // 认证时调用
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         /* 输出token */
@@ -56,7 +58,7 @@ public class MyRealm extends AuthorizingRealm {
         // principal : 认证的实体信息,可以是username,也可以是数据表对应的用户的实体类对象
         // 产生随机的盐值
         int i = new Random().nextInt(10000);
-        ByteSource salt = ByteSource.Util.bytes("user"+i);
+        ByteSource salt = ByteSource.Util.bytes("user" + i);
         SimpleHash md5 = new SimpleHash("md5", "654321", salt, 5);
         // credentials : 是从数据库中获取的密码
         Object credentials = md5.toString();

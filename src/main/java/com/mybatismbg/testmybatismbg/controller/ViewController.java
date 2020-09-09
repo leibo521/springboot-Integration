@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.Map;
 
 @Slf4j
@@ -22,39 +23,39 @@ import java.util.Map;
 public class ViewController {
 
     @RequestMapping("/")
-    public String index(){
+    public String index() {
         return "index";
     }
 
     @RequestMapping("/success")
-    public String loginSuccess(){
+    public String loginSuccess() {
         return "success";
     }
 
     @RequestMapping("/login")
-    public String loginPage(){
+    public String loginPage() {
         return "login";
     }
 
     @RequestMapping("/nothave")
-    public String notHave(){
+    public String notHave() {
         return "NotHave";
     }
 
     @RequestMapping("/userpage")
-    public String getUser(){
+    public String getUser() {
         return "user";
     }
 
     @RequestMapping("/empage")
-    public String getEmp(){
+    public String getEmp() {
         return "employee";
     }
 
 
     // 登录的请求
     @PostMapping("/shirologin")
-    public String shiroLogin(@RequestParam("username") String name,@RequestParam("password") String password){
+    public String shiroLogin(@RequestParam("username") String name, @RequestParam("password") String password) {
         log.info("登录的请求已经接收");
         // 获取当前的subject
         Subject subjectUser = SecurityUtils.getSubject();
@@ -75,17 +76,18 @@ public class ViewController {
     @Autowired
     EmpService empService;
 
-    @RequiresRoles(value = {"admin"},logical = Logical.AND) //表示这个方法需要当前用户具有admin这个角色,否则抛出org.apache.shiro.authz.AuthorizationException
+    @RequiresRoles(value = {"admin"}, logical = Logical.AND)
+    //表示这个方法需要当前用户具有admin这个角色,否则抛出org.apache.shiro.authz.AuthorizationException
     @RequestMapping("seeadmin")
-    public String seeadmin(Map<String,Object> map){
-        map.put("emp",empService.getEmpById(101));
+    public String seeadmin(Map<String, Object> map) {
+        map.put("emp", empService.getEmpById(101));
         log.info(empService.getEmpById(101).toString());
         return "employee";
     }
 
     // 使用这个注解来捕获这个异常,在发生这个异常时重定向到首页
     @ExceptionHandler(value = {AuthorizationException.class})
-    public String getException(){
+    public String getException() {
         return "redirect:/";
     }
 

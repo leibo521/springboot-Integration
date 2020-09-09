@@ -26,7 +26,7 @@ public class ShiroConfig {
 
     // 创建Realm
     @Bean
-    public AuthorizingRealm myRealm(){
+    public AuthorizingRealm myRealm() {
         MyRealm myRealm = new MyRealm();
         // 设置凭证匹配器为HashedCredentialsMatcher
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -38,7 +38,7 @@ public class ShiroConfig {
 
     // 创建第二个realm
     @Bean
-    public AuthorizingRealm secondRealm(){
+    public AuthorizingRealm secondRealm() {
         SecondRealm secondRealm = new SecondRealm();
         // 设置凭证管理器
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -51,7 +51,7 @@ public class ShiroConfig {
     // 创建Authenticator
     @Primary //使他成为默认的
     @Bean
-    public Authenticator authenticator(){
+    public Authenticator authenticator() {
         // 创建实例
         ModularRealmAuthenticator authenticator = new ModularRealmAuthenticator();
         // 设置认证策略,所有的realm都必须成功
@@ -61,7 +61,7 @@ public class ShiroConfig {
 
     // 创建SecurityManager
     @Bean
-    public DefaultWebSecurityManager securityManager(Authenticator authenticator,List<Realm> realms){
+    public DefaultWebSecurityManager securityManager(Authenticator authenticator, List<Realm> realms) {
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         // 设置Authenticator
         defaultWebSecurityManager.setAuthenticator(authenticator);
@@ -74,7 +74,7 @@ public class ShiroConfig {
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         simpleCookie.setHttpOnly(true);
         // 设置保存缓存为7天
-        simpleCookie.setMaxAge(7*24*60*60);
+        simpleCookie.setMaxAge(7 * 24 * 60 * 60);
         // 设置cookie
         cookieRememberMeManager.setCookie(simpleCookie);
         // 设置rememberMe管理器
@@ -84,35 +84,35 @@ public class ShiroConfig {
 
     // 创建对应的过滤条件和跳转条件
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager defaultWebSecurityManager){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager defaultWebSecurityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
-        Map<String,String> map = new LinkedHashMap<>();
+        Map<String, String> map = new LinkedHashMap<>();
         /*
-        * 权限的解释:
-        *   anon 可以匿名访问
-        *   authc 必须登录认证后才能访问
-        *   logout 退出登录
-        *   user 要么通过登录,要么通过记住我(RememberMe cookie)
-        * url匹配的模式(支持ant风格):
-        *   ?:匹配一个字符
-        *   *:匹配零个或者多个字符串
-        *   **:匹配路径中零个或者多个路径,/**表示匹配/下的任意层的任意路径
-        * 匹配机制采用第一次匹配优先:(从上倒下优先匹配)
-        * */
+         * 权限的解释:
+         *   anon 可以匿名访问
+         *   authc 必须登录认证后才能访问
+         *   logout 退出登录
+         *   user 要么通过登录,要么通过记住我(RememberMe cookie)
+         * url匹配的模式(支持ant风格):
+         *   ?:匹配一个字符
+         *   *:匹配零个或者多个字符串
+         *   **:匹配路径中零个或者多个路径,/**表示匹配/下的任意层的任意路径
+         * 匹配机制采用第一次匹配优先:(从上倒下优先匹配)
+         * */
         // 开放的
-        map.put("/","anon");
-        map.put("/login","anon");
-        map.put("/shirologin","anon");
+        map.put("/", "anon");
+        map.put("/login", "anon");
+        map.put("/shirologin", "anon");
         // 退出登录
-        map.put("/shiroLogout","logout");
+        map.put("/shiroLogout", "logout");
         /*
-        * 角色过滤器:roles ==> 只有具备对应的角色才能访问对应的资源
-        * */
-        map.put("/userpage","roles[user]");
-        map.put("/empage","roles[admin]");
+         * 角色过滤器:roles ==> 只有具备对应的角色才能访问对应的资源
+         * */
+        map.put("/userpage", "roles[user]");
+        map.put("/empage", "roles[admin]");
         //判断是否是通过认证或者是通过记住我
-        map.put("/**","anon");
+        map.put("/**", "anon");
         //登录
         shiroFilterFactoryBean.setLoginUrl("/login");
         //首页

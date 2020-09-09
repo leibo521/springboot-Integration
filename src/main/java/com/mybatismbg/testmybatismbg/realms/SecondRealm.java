@@ -44,7 +44,7 @@ public class SecondRealm extends AuthorizingRealm {
         Object principal = name;
         // 产生随机的盐值
         int i = new Random().nextInt(10000);
-        ByteSource salt = ByteSource.Util.bytes("user"+i);
+        ByteSource salt = ByteSource.Util.bytes("user" + i);
         SimpleHash md5 = new SimpleHash("SHA-1", "654321", salt, 5);
         // credentials : 是从数据库中获取的密码
         Object credentials = md5.toString();

@@ -2,7 +2,9 @@ package com.mybatismbg.testmybatismbg.mappers;
 
 import com.mybatismbg.testmybatismbg.bean.Locations;
 import com.mybatismbg.testmybatismbg.bean.LocationsExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface LocationsMapper {
